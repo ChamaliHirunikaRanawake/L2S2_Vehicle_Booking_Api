@@ -1,0 +1,96 @@
+Mulinma daily(school service wge) da rent ekat waahanyk da kyla thoranawa...
+
+Rent ekata nam kawadatada yanne keeyatda pickup location drop off location time eka input krnn denwa aaya rent krnne car ekkda bus ekkda kyl vehicle type eka select krnna plwn..
+Eka submit kraama available vehicles tika display wenwa..eken vehicle ekk apit kamathi ekk pick krnna 
+plwn price ehm balala..eetpsse thorala rent deela confirm booking denna wge thiyenne....
+Methana hadanna amaru dewal thiyanwnm eeka plwn widhata wens kraata aulk naa..kohmahri nikan uber wage ekak wenna oni web application eka ... 
+Meka wenna oni vehicle ek select krla confirm booking dunnama driver ge profile eke ek pennanna oni
+
+
+
+
+
+
+
+
+
+mongodb://localhost/taxiapp
+
+
+ mongodb+srv://admin2:admin111@cluster0.mzunw.mongodb.net/mytable?retryWrites=true&w=majority
+
+
+
+
+
+
+
+
+
+
+
+Frontend - React 
+Backend- node js
+Mongodb - mongodb 
+
+Vehicle renting system.
+
+1. Select option - whether daily routine or rent a vehicle
+
+(Meken hadaaganna oni rent a vehicle part eka)
+
+2. Form for vehicle rent
+Inputs  karanna oni dewal - 
+- Date for rent
+-Time
+-pick up location
+-Destination location
+-vehicle type (car , Bus ,van, cab)  {drop down list ekk widiht enn oni}
+-vehicle model (car ekk uda select kroth available car models drop down list ekk widht ena widht( toyota, honda , etc....)
+
+
+3- meka fill krla search vehicle dunnama available vehicles tika vehicle eke details ekka display wenna oni ( vehicles nattan no any vehicles available wge display )
+
+4-kamathi vehicle eka select krla add booking dunnama driver ge profile eke new bookings wla e trip eke details tika pennanna oni
+
+5-driver kenknwa vehicle ekata assign kranna mokkhri widihakuth oni wei
+
+6-paseenger ta booking eka confirm wunaada nadda kyala notification ekak display wenna wge th oni..(your booking has confirmed)
+
+7- E booking eka iwara wunaama driver ge profile eke new bookings walin e trip details ain wenn oni
+
+
+
+
+
+
+
+
+[
+  {
+    '$lookup': {
+      'from': 'bookings', 
+      'localField': '_id', 
+      'foreignField': 'drive', 
+      'as': 'res'
+    }
+  }, {
+    '$match': {
+      'res._id': {
+        '$exists': false
+      }
+    }
+  }, {
+    '$project': {
+      '__v': 0, 
+      'res': 0
+    }
+  }, {
+    '$lookup': {
+      'from': 'drivers', 
+      'localField': 'driver', 
+      'foreignField': '_id', 
+      'as': 'driver'
+    }
+  }
+]
